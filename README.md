@@ -27,38 +27,54 @@ Here, Qtt & Qt+1t+1 are present state & next state respectively. So, T flip-flop
 From the above characteristic table, we can directly write the next state equation as Q(t+1)=T′Q(t)+TQ(t)′ ⇒Q(t+1)=T⊕Q(t)
 
 **Procedure**
-```
-Step 1: Open Quartus II in your laptop.
 
-Step 2: Write code to implement SR flipflop using verilog and validating their functionality using their functional tables.
+/* write all the steps invloved */
 
-Step 3: Run compilation to check for errors.
+~~~
+1.Initialize the shift register to a known state (e.g., all zeros).
 
-Step 4: Open waveform output and load input values.
+2.Input a bit serially into the shift register.
 
-Step 5: Run simulation to get the output.
+3.Shift the contents of the register one position to the right (or left).
 
-Step 6: Open in RTL viewers to get RTL diagram output.
-```
+4.Output the shifted bit from the last stage of the register.
+
+5.Repeat steps 2-4 for each bit you want to input and shift.
+~~~
+
 **PROGRAM**
-```
-module D_FF(D,Clock,reset,Q);
-input D,Clock,reset;
-output reg Q;
-always @ (negedge Clock)
-if(!reset)
-     Q <= 0;
-	else
-      Q <= D;	
- endmodule
- ```
+
+/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
+*/
+~~~
+module Tflipflop( input clk, rst_n, input t,
+output reg q,
+output q_bar
+);
+always@(posedge clk) 
+begin // for synchronous reset
+  //WRITE THE CONDITION OF TOGGLE FLIPFLOP HERE WITH RESET AND 
+  //IMPLEMENT THE T LOGIC BY CONDITIONAL OPERATOR
+if(!rst_n)
+q<=0;
+else 
+begin
+q<=(t?~q:q);
+end
+end
+assign q_bar = ~q;
+endmodule
+
+Developed by : SATHYANARAYANAN M - 212224040300
+~~~
 **RTL LOGIC FOR FLIPFLOPS**
-![image](https://github.com/23007232/D-FLIPDLOP-NEGEDGE/assets/139115574/4efff88f-7cf9-423e-9cde-5d90ef467331)
+
+
+![329697108-61fd3809-f780-4197-8567-a2bc1e0d7e74](https://github.com/04Varsha/T-FLIPFLOP-POSEDGE/assets/149035374/dc18e2ee-f2c9-47c5-a373-bbea78e0ff03)
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
-![image](https://github.com/23007232/D-FLIPDLOP-NEGEDGE/assets/139115574/e48d9390-50bc-42a5-9a92-da0c5a502179)
 
+![329697143-2a9c5ea9-5f76-41ed-ad92-eaa4d4bfccc0](https://github.com/04Varsha/T-FLIPFLOP-POSEDGE/assets/149035374/3320aeff-f20e-477b-af67-a641267cbf27)
 
 **RESULTS**
-Thus the D flipflop using verilog and validating their functionality using their functional tables was implemented.
-
+Thus the program executed successfully.
